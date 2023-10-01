@@ -1,14 +1,13 @@
 import { defineCollection, reference, z } from "astro:content";
-import { format } from "date-fns";
 
 const posts = defineCollection({
   type: "content",
   schema: z.object({
-    author: reference("authors"),
-    date: z.string().transform((str) => format(new Date(str), "MMMM d, yyyy")),
-    feature: z.boolean(),
-    tags: z.array(z.string()),
     title: z.string(),
+    author: reference("authors"),
+    date: z.string(),
+    featured: z.boolean(),
+    tags: z.array(z.string()).optional(),
   }),
 });
 
