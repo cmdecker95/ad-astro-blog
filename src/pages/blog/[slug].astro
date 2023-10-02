@@ -1,6 +1,7 @@
 ---
-import Title from "@components/Title.astro";
 import Layout from "@layouts/Layout.astro";
+import Title from "@components/Title.astro";
+import Divider from "@components/Divider.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 
 /* Static generates HTML for every post and sets up a route to render it */
@@ -32,16 +33,10 @@ const author = authors.filter((author) => author.id === post.data.author.id)[0];
   <a href="/blog" class="text-zinc-500 hover:text-zinc-700 text-md mb-8 block">
     ← Back to all posts
   </a>
-  <section
-    class="bg-zinc-900 rounded-xl p-6 mb-8 sm:px-10 sm:pt-16 sm:pb-8 sm:mb-16"
-    style="background-image: radial-gradient(farthest-corner at 3000px 3000px, whitesmoke, transparent)"
-  >
-    <h1 class="text-4xl sm:text-5xl font-bold text-zinc-50 mb-6">
-      {post.data.title}
-    </h1>
-    <p class="text-md text-zinc-400">{author.data.name}</p>
-    <p class="text-md text-zinc-600">{post.data.date}</p>
-  </section>
+  <Title text={post.data.title} />
+  <p class="text-zinc-700 text-md mb-2">{author.data.name}</p>
+  <p class="text-zinc-700 text-md mb-8">{post.data.date}</p>
+  <Divider />
   <article class="prose lg:prose-xl mb-16 overflow-visible relative">
     <Content />
   </article>
